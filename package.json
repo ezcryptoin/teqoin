@@ -1,0 +1,28 @@
+{
+  "name": "teqoin-eth-bot",
+  "version": "2.3.0",
+  "description": "Multi-Account Internal ETH Transfer Bot for TeQoin L2 with Marquee UI",
+  "main": "bot-multi.js",
+  "scripts": {
+    "start": "node bot-multi.js",
+    "test": "node bot-multi.js --test",
+    "run": "node bot-multi.js -c 500 -a 0.000001 -b 50",
+    "run-fast": "node bot-multi.js -c 1000 -a 0.000001 --no-delay",
+    "marquee": "node bot-multi.js -c 500 -a 0.000001 --marquee"
+  },
+  "keywords": [
+    "eth",
+    "transfer",
+    "teqoin",
+    "l2",
+    "multi-wallet",
+    "airdrop",
+    "bot"
+  ],
+  "author": "fates",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "ethers": "^5.7.2"
+  }
+}
