@@ -1,0 +1,42 @@
+#!/bin/bash
+# bin/bot - Wrapper script untuk TeQoin ETH Bot
+# Usage: bot [options]
+
+# Default parameters
+DEFAULT_COUNT=50000
+DEFAULT_AMOUNT=0.000001
+DEFAULT_BATCH=50
+
+# Parse custom args jika ada
+COUNT="${1:-$DEFAULT_COUNT}"
+AMOUNT="${2:-$DEFAULT_AMOUNT}"
+BATCH="${3:-$DEFAULT_BATCH}"
+
+# Change to repo root
+cd "$(dirname "$0")/.." 2>/dev/null || cd ~/teqoin 2>/dev/null || cd .
+
+# Check dependencies
+if [ ! -f "bot-multi.js" ]; then
+    echo "❌ bot-multi.js not found!"
+    echo "💡 Pastikan Anda berada di root repository teqoin"
+    exit 1
+fi
+
+if [ ! -f "wallets.json" ]; then
+    echo "❌ wallets.json not found!"
+    echo "💡 Copy wallets.example.json ke wallets.json dulu:"
+    echo "   cp wallets.example.json wallets.json"
+    exit 1
+fi
+
+# Run the bot with colored header
+echo -e "\n\033[1;36m╔════════════════════════════════════════╗"
+echo -e "║  🤖 TeQoin ETH Bot - Quick Start     ║"
+echo -e "╠════════════════════════════════════════╣"
+echo -e "║  Count:  \033[1;33m$COUNT\033[1;36m transactions          ║"
+echo -e "║  Amount: \033[1;33m$AMOUNT ETH\033[1;36m per tx          ║"
+echo -e "║  Batch:  \033[1;33m$BATCH\033[1;36m parallel             ║"
+echo -e "╚════════════════════════════════════════╝\033[0m\n"
+
+# Execute
+node bot-multi.js -c "$COUNT" -a "$AMOUNT" -b "$BATCH" "$@"
