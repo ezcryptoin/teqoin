@@ -1,0 +1,4 @@
+# File: .gitattributes
+.bashrc export-ignore
+.codespaces/ export-ignore
+bin/ export-ignore
